@@ -1,0 +1,60 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+};
+body{
+    background-color: gray;
+}
+
+#container-books {
+    background-color: white;
+
+
+};
+/*
+.card {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+};
+*/
+.book-form {
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 500px;
+    background-color: #0f172a;
+}
+
+.form-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+    padding: 20px;
+    border: 1px solid black;
+    background-color:#e7e5e4;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.book-btn {
+    margin: 10px 0px 0px 615px;
+    background-color: #0f172a;
+    color: white;
+    font-weight: bold;
+    padding: 30px;
+    border-radius: 30px 30px;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
