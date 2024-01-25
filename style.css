@@ -7,31 +7,10 @@ body{
     background-color: gray;
 }
 
-#container-books {
-width: 500px;
-height: 30vh;
-margin: 20px;
-padding: 20px;
-background-color: #0f172a;
-
-
-
-};
-
-.card {
-    background-color: #e7e5e4;
-    padding: 30px;
-    margin: 100px;
-    max-width: 300px;
-    height: 50vh;
-    border: 1px solid black;
-}
 
 .book-form {
     margin: 0 auto;
-    border: 1px solid black;
     width: 500px;
-    background-color: #0f172a;
 }
 
 .form-style {
@@ -63,9 +42,7 @@ background-color: #0f172a;
     gap: 10px;
 }
 
-.para-title, .para-author, .para-pages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
+table {
+    border: 1px solid black;
+    margin: 0 auto;
 }

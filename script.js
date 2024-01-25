@@ -1,58 +1,51 @@
-const bookContainer = document.querySelector("#container-books")
-
-const myLibrary = [{
-    title: "Brothers Karamazov",
-    author: "Fyodor Dostoievski",
-    pages: "824 pages",
-    read: false
-}, {
-    title: "Crime and Punishment",
-    author: "Fyodor Dostoievski",
-    pages: "500 pages",
-    read: false
-}];
+const myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = boolean(read);
-}
-
-function addBookToLibrary() {
-    let title = document.querySelector(".title").value
-    let bookNew = new bookNew ()
-    myLibrary.push(bookNew);
+    this.read = read;
 }
 
 
 function bookDisplay(){
-    return myLibrary.forEach((book) => {
-        let container = document.querySelector("#container-books")
-        let cardBook = document.querySelector(".card")
-        let paraTitle = document.querySelector(".para-title");
-        let paraAuthor = document.querySelector(".para-author");
-        let paraPages = document.querySelector(".para-pages");
-        
-        paraTitle.innerHTML += `Title: ${book.title}`
-        paraAuthor.innerHTML += `Author: ${book.author}`
-        paraPages.innerHTML += `Pages: ${book.pages}`
+    let library = document.querySelector("#library")
+        for (let i = 0; i < myLibrary.length; i++){
+            let book = myLibrary[i];
+            let bookTable = document.createElement("div");
+            library.appendChild(bookTable)
+            bookTable.innerHTML = `
+            <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+            </tr>
+            <tr>
+                <td id="title">${book.title}</td>
+                <td id="author">${book.author}</td>
+                <td id="pages">${book.pages}</td>
+                <td id="read">${book.read ? "Read" : "Not read yet"}</td>
+            </tr>
+            <button></button>
+        </table>`
+        }
+      }
 
-        //paraTitle.innerHTML = book.title;
-        /*
-        let bookCard = document.createElement("p")
-        bookCard.classList.add("title")
-        bookCard.innerHTML += book.title;
-        bookCard.appendChild(containerBooks)
-        document.getElementsByClassName(".title").style.color = "black";
-        */
-      })
-    }
-    console.log(bookDisplay());
 
-    function createBookItem() {
-        
-    }
+
+function addBookToLibrary() {
+    let title = document.querySelector("#title").value
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").checked;
+    let bookNew = new Book(title, author, pages, read);
+    myLibrary.push(bookNew);
+    bookDisplay();
+}
+
+
 
     // Create click event to "New Book" button, which brings up the form to add new books
     let bookBtn = document.querySelector(".book-btn");
@@ -60,3 +53,8 @@ function bookDisplay(){
         let bookForm = document.querySelector(".book-form");
         bookForm.style.display = "block";
     });
+
+    document.querySelector(".book-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        addBookToLibrary();
+    })
