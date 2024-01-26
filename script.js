@@ -7,9 +7,14 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+function removeBooks(index) {
+    myLibrary.splice(index, 1);
+    bookDisplay();
+}
 
 function bookDisplay(){
     let library = document.querySelector("#library")
+    library.innerHTML = "";
         for (let i = 0; i < myLibrary.length; i++){
             let book = myLibrary[i];
             let bookTable = document.createElement("div");
@@ -27,8 +32,8 @@ function bookDisplay(){
                 <td id="author">${book.author}</td>
                 <td id="pages">${book.pages}</td>
                 <td id="read">${book.read ? "Read" : "Not read yet"}</td>
+                <td><button class="remove-btn" onclick="removeBooks(${i})">Remove Book</button></td>
             </tr>
-            <button></button>
         </table>`
         }
       }
