@@ -7,11 +7,21 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggleRead = function() {
+this.read = !this.read;
+}
+
+function toggleRead(index) {
+    myLibrary[index].toggleRead();
+    bookDisplay();
+}
+
 function removeBooks(index) {
     myLibrary.splice(index, 1);
     bookDisplay();
 }
 
+// Loop through the array and displays each book on a table
 function bookDisplay(){
     let library = document.querySelector("#library")
     library.innerHTML = "";
@@ -20,25 +30,19 @@ function bookDisplay(){
             let bookTable = document.createElement("div");
             library.appendChild(bookTable)
             bookTable.innerHTML = `
-            <table>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Pages</th>
-                <th>Read</th>
-            </tr>
-            <tr>
-                <td id="title">${book.title}</td>
-                <td id="author">${book.author}</td>
-                <td id="pages">${book.pages}</td>
-                <td id="read">${book.read ? "Read" : "Not read yet"}</td>
-                <td><button class="remove-btn" onclick="removeBooks(${i})">Remove Book</button></td>
-            </tr>
-        </table>`
+            <div class="container">
+                <div class="card">
+                    <p>${book.title}</p>
+                    <p>by ${book.author}</p>
+                    <p>${book.pages} pages</p>
+                    <p>${book.read ? "Read" : "Not read yet"}</p>
+                    <button class="toggle-read-btn" onclick="toggleRead(${i})">Toggle Read</button>
+                    <button class="remove-btn" onclick="removeBooks(${i})">Remove Book</button>
+                </div>
+            </div>
+            `
         }
       }
-
-
 
 function addBookToLibrary() {
     let title = document.querySelector("#title").value
@@ -58,7 +62,7 @@ function addBookToLibrary() {
         let bookForm = document.querySelector(".book-form");
         bookForm.style.display = "block";
     });
-
+    // Create an event that sucessfully submits the form's information
     document.querySelector(".book-form").addEventListener("submit", function(event) {
         event.preventDefault();
         addBookToLibrary();
