@@ -2,11 +2,8 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    text-align: center;
 };
-body{
-    background-color: gray;
-}
-
 
 .book-form {
     margin: 0 auto;
@@ -21,28 +18,70 @@ body{
     gap: 10px;
     padding: 20px;
     border: 1px solid black;
+    border-radius: 5px;
     background-color:#e7e5e4;
     max-width: 300px;
     margin: 0 auto;
     margin-top: 20px;
 }
 
-.book-btn {
-    margin: 10px 0px 0px 615px;
+input[type=submit] {
     background-color: #0f172a;
+    box-shadow: 1px 1px 3px black;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #0f172a;
+}
+
+.book-btn {
+    margin: 10px;
+    background-color: #0f172a;
+    box-shadow: 1px 1px 3px black;
     color: white;
     font-weight: bold;
     padding: 30px;
     border-radius: 30px 30px;
+    border: 1px solid #0f172a;
 }
 
-.checkbox {
+ .card {
     display: flex;
-    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
     gap: 10px;
+    border: 2px solid #0f172a;
+    background: #e7e5e4;
+    padding: 40px;    
 }
 
-table {
-    border: 1px solid black;
+.container {
     margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    gap: 20px;
+    width: 200px;
+}
+
+.remove-btn {
+    background-color: red;
+    box-shadow: 1px 1px 3px red;
+    color: white;
+    font-weight: bold;
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.toggle-read-btn {
+    background-color: #0f172a;
+    box-shadow: 1px 1px 3px #0f172a;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid #0f172a;
 }
