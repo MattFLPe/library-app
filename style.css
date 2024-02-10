@@ -17,12 +17,13 @@
     justify-items: center;
     gap: 10px;
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid #0f172a;
     border-radius: 5px;
     background-color:#e7e5e4;
-    max-width: 300px;
+    max-width: 500px;
     margin: 0 auto;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 input[type=submit] {
@@ -35,27 +36,6 @@ input[type=submit] {
     border: 1px solid #0f172a;
 }
 
-.book-btn {
-    margin: 10px;
-    background-color: #0f172a;
-    box-shadow: 1px 1px 3px black;
-    color: white;
-    font-weight: bold;
-    padding: 30px;
-    border-radius: 30px 30px;
-    border: 1px solid #0f172a;
-}
-
- .card {
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    border: 2px solid #0f172a;
-    background: #e7e5e4;
-    padding: 40px;    
-}
 
 .container {
     margin: 0 auto;
@@ -84,4 +64,24 @@ input[type=submit] {
     border-radius: 10px;
     margin-top: 10px;
     border: 1px solid #0f172a;
+}
+
+th {
+    
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px;
+    width: 500px;
+}
+
+#library {
+    text-align: center;
+    display: inline-block;
+    margin-top: 30px;
+    margin: 10px;
+    border: 1px solid #c7c9cf;
+}
+
+td {
+    background-color: rgb(236, 235, 235);
 }
