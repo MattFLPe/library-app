@@ -1,69 +1,85 @@
-const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+class Book {
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    };
 
-Book.prototype.toggleRead = function() {
-this.read = !this.read;
-}
+    toggleRead() {
+        this.read = !this.read;
+    };
 
-function toggleRead(index) {
-    myLibrary[index].toggleRead();
-    bookDisplay();
-}
+};
 
-function removeBooks(index) {
-    myLibrary.splice(index, 1);
-    bookDisplay();
-}
+class Interface {
+    static addBookToLibrary(book) {
 
-// Loop through the array and displays each book on a table
-function bookDisplay(){
-    let library = document.querySelector("#library")
-    library.innerHTML = "";
-        for (let i = 0; i < myLibrary.length; i++){
-            let book = myLibrary[i];
-            let bookTable = document.createElement("div");
-            library.appendChild(bookTable)
-            bookTable.innerHTML = `
-            <div class="container">
-                <div class="card">
-                    <p>${book.title}</p>
-                    <p>by ${book.author}</p>
-                    <p>${book.pages} pages</p>
-                    <p>${book.read ? "Read" : "Not read yet"}</p>
-                    <button class="toggle-read-btn" onclick="toggleRead(${i})">Toggle Read</button>
-                    <button class="remove-btn" onclick="removeBooks(${i})">Remove Book</button>
-                </div>
-            </div>
-            `
-        }
-      }
+        const bookList = document.querySelector("#book-list")
+        const row = document.createElement("tr");
 
-function addBookToLibrary() {
-    let title = document.querySelector("#title").value
-    let author = document.getElementById("author").value;
-    let pages = document.getElementById("pages").value;
-    let read = document.getElementById("read").checked;
-    let bookNew = new Book(title, author, pages, read);
-    myLibrary.push(bookNew);
-    bookDisplay();
-}
+        row.innerHTML = `
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.pages}</td>
+        <td>${book.read ? "Read" : "Not read yet"}</td>
+        <td><button class="toggle-read-btn" onclick="Interface.toggleRead(${myLibrary.indexOf(book)})">Toggle Read</button></td>
+        <td><button class="remove-btn" onclick="Interface.removeBooks(${bookList.childElementCount - 1})">Remove Book</button></td>
+        `
+
+        bookList.appendChild(row)
+    };
+
+    static removeBooks(index) {
+        myLibrary.splice(index, 1);
+        Interface.bookDisplay();
+    };
+
+    static toggleRead(index) {
+        
+    }
+
+    static bookDisplay() {
+        const books = Store.getBooks();
+        const bookList = document.querySelector("#book-list");
+        bookList.innerHTML = "";
+        books.forEach((book) => Interface.addBookToLibrary(book))
+    };
+};
+
+class Store {
+    static getBooks() {
+        let books = [];
+        if (localStorage.getItem('books') !== null) {
+            books = JSON.parse(localStorage.getItem('books'));
+        };
+        return books;
+    };
+
+    static saveBooks(books) {
+        localStorage.setItem('books', JSON.stringify(books));
+    };
+};
+
+let myLibrary = Store.getBooks();
+Interface.bookDisplay();
 
 
-
-    // Create click event to "New Book" button, which brings up the form to add new books
-    let bookBtn = document.querySelector(".book-btn");
-    bookBtn.addEventListener("click", function() {
-        let bookForm = document.querySelector(".book-form");
-        bookForm.style.display = "block";
-    });
     // Create an event that sucessfully submits the form's information
     document.querySelector(".book-form").addEventListener("submit", function(event) {
         event.preventDefault();
-        addBookToLibrary();
-    })
+    // Get form input values
+    let title = document.querySelector("#title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").checked;
+
+    // Create a Book object
+    let newBook = new Book(title, author, pages, read);
+
+    // Add the book to the library and update the display
+    myLibrary.push(newBook);
+    Interface.addBookToLibrary(newBook);
+    Store.saveBooks(myLibrary);
+    });
